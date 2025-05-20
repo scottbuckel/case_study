@@ -1,6 +1,6 @@
 # SRE Case Study: Multi-Region Expansion for BlockChain Solutions Inc.
 
-This repository contains my response to the SRE Case Study provided by BlockChain Solutions Inc. The case study was sent to me at 9 AM, and this is my immediate response.
+This repository contains my response to the SRE Case Study provided by BlockChain Solutions Inc. The case study was sent to me at 9 AM, and this is my immediate response, sent 4 hours later.
 
 ## Files
 
