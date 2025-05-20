@@ -1,0 +1,154 @@
+<mxfile host="app.diagrams.net" agent="Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/18.5 Safari/605.1.15" version="27.0.6">
+  <diagram id="diagram1" name="Multi-Region LBR Top-Down">
+    <mxGraphModel dx="930" dy="1030" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="850" pageHeight="1100" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="2" value="Users" style="shape=mxgraph.aws4.users;html=1;whiteSpace=wrap;fillColor=#232F3E;fontColor=#FFFFFF;fontSize=16;" parent="1" vertex="1">
+          <mxGeometry x="385" y="10" width="80" height="80" as="geometry" />
+        </mxCell>
+        <mxCell id="3" value="Route 53&lt;br&gt;&lt;b&gt;Latency Based Routing&lt;/b&gt;" style="outlineConnect=0;dashed=0;verticalLabelPosition=bottom;verticalAlign=top;align=center;html=1;shape=mxgraph.aws4.route_53;fillColor=#FF9900;gradientColor=none;fontSize=14;" parent="1" vertex="1">
+          <mxGeometry x="386" y="130" width="78" height="78" as="geometry" />
+        </mxCell>
+        <mxCell id="4" value="DNS Query" style="endArrow=classic;html=1;rounded=0;entryX=0.5;entryY=0;exitX=0.5;exitY=1;" parent="1" source="2" target="3" edge="1">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="425" y="130" as="sourcePoint" />
+            <mxPoint x="425" y="180" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="region1Group" value="&lt;font style=&quot;font-size: 18px;&quot;&gt;us-east-1&lt;/font&gt;" style="html=1;dashed=0;whiteSpace=wrap;labelBackgroundColor=none;strokeColor=#1570A0;fontColor=#1570A0;align=center;verticalAlign=top;spacingTop=8;fontSize=12;fillColor=none;shape=mxgraph.aws4.group;" parent="1" vertex="1">
+          <mxGeometry x="40" y="440" width="300" height="290" as="geometry" />
+        </mxCell>
+        <mxCell id="r1_alb" value="Application Load Balancer" style="outlineConnect=0;dashed=0;verticalLabelPosition=bottom;verticalAlign=top;align=center;html=1;shape=mxgraph.aws4.elastic_load_balancing_application_load_balancer;fillColor=#FF9900;gradientColor=none;" parent="region1Group" vertex="1">
+          <mxGeometry x="30" y="50" width="78" height="90.48" as="geometry" />
+        </mxCell>
+        <mxCell id="r1_eks" value="" style="outlineConnect=0;dashed=0;verticalLabelPosition=bottom;verticalAlign=top;align=center;html=1;shape=mxgraph.aws4.elastic_kubernetes_service;fillColor=#FF9900;gradientColor=none;" parent="region1Group" vertex="1">
+          <mxGeometry x="29" y="170" width="78" height="90.48" as="geometry" />
+        </mxCell>
+        <mxCell id="r1_region_status" value="&lt;b&gt;region-status&lt;/b&gt;&lt;br&gt;Microservice" style="outlineConnect=0;dashed=0;verticalLabelPosition=bottom;verticalAlign=top;align=center;html=1;shape=mxgraph.aws4.microservice;fillColor=#8C4EFF;gradientColor=none;fontSize=11;" parent="region1Group" vertex="1">
+          <mxGeometry x="190" y="63.80000000000001" width="78" height="90.48" as="geometry" />
+        </mxCell>
+        <mxCell id="conn_r1_alb_eks" value="" style="endArrow=classic;html=1;rounded=0;exitX=0.5;exitY=1;entryX=0.5;entryY=0;" parent="region1Group" source="r1_alb" target="r1_eks" edge="1">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="149" y="183.28" as="sourcePoint" />
+            <mxPoint x="149" y="208.8" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="conn_r1_eks_status" value="&lt;font style=&quot;font-size: 10px;&quot;&gt;Internal Status&lt;/font&gt;" style="endArrow=classic;html=1;rounded=0;exitX=1;exitY=0.5;entryX=0;entryY=0.75;entryDx=0;entryDy=0;exitDx=0;exitDy=0;" parent="region1Group" source="r1_eks" target="r1_region_status" edge="1">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="190" y="254.04" as="sourcePoint" />
+            <mxPoint x="200" y="137.09090909090907" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="BZ69hw3lXa-rXLOsEJiv-6" value="" style="points=[];aspect=fixed;html=1;align=center;shadow=0;dashed=0;fillColor=#FF6A00;strokeColor=none;shape=mxgraph.alibaba_cloud.alb_application_load_balancer_01;" vertex="1" parent="region1Group">
+          <mxGeometry x="48.45" y="77.81" width="41.11" height="34.86" as="geometry" />
+        </mxCell>
+        <mxCell id="BZ69hw3lXa-rXLOsEJiv-9" value="Amazon EKS" style="sketch=0;outlineConnect=0;fontColor=#232F3E;gradientColor=none;strokeColor=#ffffff;fillColor=#232F3E;dashed=0;verticalLabelPosition=middle;verticalAlign=bottom;align=center;html=1;whiteSpace=wrap;fontSize=10;fontStyle=1;spacing=3;shape=mxgraph.aws4.productIcon;prIcon=mxgraph.aws4.eks;" vertex="1" parent="region1Group">
+          <mxGeometry x="29" y="170" width="80" height="100" as="geometry" />
+        </mxCell>
+        <mxCell id="region2Group" value="&lt;font style=&quot;font-size: 18px;&quot;&gt;eu-west-1&lt;/font&gt;" style="html=1;dashed=0;whiteSpace=wrap;labelBackgroundColor=none;strokeColor=#1570A0;fontColor=#1570A0;align=center;verticalAlign=top;spacingTop=8;fontSize=12;fillColor=none;shape=mxgraph.aws4.group;" parent="1" vertex="1">
+          <mxGeometry x="490" y="440" width="300" height="280" as="geometry" />
+        </mxCell>
+        <mxCell id="r2_alb" value="Application Load Balancer" style="outlineConnect=0;dashed=0;verticalLabelPosition=bottom;verticalAlign=top;align=center;html=1;shape=mxgraph.aws4.elastic_load_balancing_application_load_balancer;fillColor=#FF9900;gradientColor=none;" parent="region2Group" vertex="1">
+          <mxGeometry x="180" y="44.800000000000004" width="78" height="87.36000000000001" as="geometry" />
+        </mxCell>
+        <mxCell id="r2_eks" value="" style="outlineConnect=0;dashed=0;verticalLabelPosition=bottom;verticalAlign=top;align=center;html=1;shape=mxgraph.aws4.elastic_kubernetes_service;fillColor=#FF9900;gradientColor=none;" parent="region2Group" vertex="1">
+          <mxGeometry x="180" y="170.00000000000003" width="78" height="87.36000000000001" as="geometry" />
+        </mxCell>
+        <mxCell id="r2_region_status" value="&lt;b&gt;region-status&lt;/b&gt;&lt;br&gt;Microservice" style="outlineConnect=0;dashed=0;verticalLabelPosition=bottom;verticalAlign=top;align=center;html=1;shape=mxgraph.aws4.microservice;fillColor=#8C4EFF;gradientColor=none;fontSize=11;" parent="region2Group" vertex="1">
+          <mxGeometry x="10" y="44.800000000000004" width="78" height="87.36000000000001" as="geometry" />
+        </mxCell>
+        <mxCell id="conn_r2_alb_eks" value="" style="endArrow=classic;html=1;rounded=0;exitX=0.5;exitY=1;entryX=0.5;entryY=0;" parent="region2Group" source="r2_alb" target="r2_eks" edge="1">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="149" y="176.96" as="sourcePoint" />
+            <mxPoint x="149" y="201.60000000000002" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="conn_r2_eks_status" value="&lt;font style=&quot;font-size: 10px;&quot;&gt;Internal Status&lt;/font&gt;" style="endArrow=classic;html=1;rounded=0;exitX=0;exitY=0.5;entryX=1;entryY=0.5;" parent="region2Group" source="r2_eks" target="r2_region_status" edge="1">
+          <mxGeometry x="-0.062" y="9" width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="190" y="245.28000000000003" as="sourcePoint" />
+            <mxPoint x="100" y="245.28000000000003" as="targetPoint" />
+            <mxPoint as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="BZ69hw3lXa-rXLOsEJiv-8" value="" style="points=[];aspect=fixed;html=1;align=center;shadow=0;dashed=0;fillColor=#FF6A00;strokeColor=none;shape=mxgraph.alibaba_cloud.alb_application_load_balancer_01;" vertex="1" parent="region2Group">
+          <mxGeometry x="196" y="64" width="47.400000000000006" height="40.2" as="geometry" />
+        </mxCell>
+        <mxCell id="BZ69hw3lXa-rXLOsEJiv-11" value="Amazon EKS" style="sketch=0;outlineConnect=0;fontColor=#232F3E;gradientColor=none;strokeColor=#ffffff;fillColor=#232F3E;dashed=0;verticalLabelPosition=middle;verticalAlign=bottom;align=center;html=1;whiteSpace=wrap;fontSize=10;fontStyle=1;spacing=3;shape=mxgraph.aws4.productIcon;prIcon=mxgraph.aws4.eks;" vertex="1" parent="region2Group">
+          <mxGeometry x="178" y="170" width="80" height="100" as="geometry" />
+        </mxCell>
+        <mxCell id="conn_r53_r1_alb" value="Route to closest healthy + active region" style="endArrow=classic;html=1;rounded=0;exitX=0;exitY=0;entryX=0.5;entryY=0;exitDx=0;exitDy=0;" parent="1" source="hc1" target="r1_alb" edge="1">
+          <mxGeometry x="-0.2517" y="2" width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="419" y="258" as="sourcePoint" />
+            <mxPoint x="200" y="400" as="targetPoint" />
+            <Array as="points">
+              <mxPoint x="400" y="270" />
+              <mxPoint x="200" y="300" />
+            </Array>
+            <mxPoint as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="conn_r53_r2_alb" value="Route to closest healthy + active region" style="endArrow=classic;html=1;rounded=0;entryX=0.5;entryY=0;exitX=1;exitY=0;exitDx=0;exitDy=0;" parent="1" source="hc1" target="r2_alb" edge="1">
+          <mxGeometry x="-0.3937" y="2" width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="450" y="390" as="sourcePoint" />
+            <mxPoint x="600" y="470" as="targetPoint" />
+            <Array as="points">
+              <mxPoint x="600" y="300" />
+            </Array>
+            <mxPoint as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="conn_hc_r1_status" value="" style="endArrow=classic;html=1;rounded=0;entryX=0.5;entryY=0;dashed=1;" parent="1" source="hc1" target="r1_region_status" edge="1">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="425" y="400" as="sourcePoint" />
+            <mxPoint x="149" y="390" as="targetPoint" />
+            <Array as="points" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="conn_hc_r2_status" value="" style="endArrow=classic;html=1;rounded=0;entryX=0.5;entryY=0;dashed=1;" parent="1" source="hc1" target="r2_region_status" edge="1">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="425" y="390" as="sourcePoint" />
+            <mxPoint x="549" y="470" as="targetPoint" />
+            <Array as="points" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="hc_label" value="Health Check&lt;br&gt;Endpoint on &lt;b&gt;region-status&lt;/b&gt;" style="html=1;whiteSpace=wrap;fillColor=none;strokeColor=none;fontSize=10;fontColor=#424242;" parent="1" vertex="1">
+          <mxGeometry x="375" y="360" width="100" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="conn_r1_status_global_dynamo" value="Read/Write &lt;br&gt;&lt;i&gt;is_active&lt;/i&gt;" style="endArrow=classic;html=1;rounded=0;exitX=0.5;exitY=1;" parent="1" source="r1_region_status" target="BZ69hw3lXa-rXLOsEJiv-14" edge="1">
+          <mxGeometry x="-0.3252" y="-18" width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="149" y="570" as="sourcePoint" />
+            <mxPoint x="380" y="790" as="targetPoint" />
+            <Array as="points">
+              <mxPoint x="310" y="680" />
+            </Array>
+            <mxPoint as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="conn_r2_status_global_dynamo" value="Read/Write &lt;br&gt;&lt;i&gt;is_active&lt;/i&gt;" style="endArrow=classic;html=1;rounded=0;exitX=0.5;exitY=1;" parent="1" source="r2_region_status" target="BZ69hw3lXa-rXLOsEJiv-14" edge="1">
+          <mxGeometry x="-0.2249" width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="549" y="570" as="sourcePoint" />
+            <mxPoint x="460" y="790" as="targetPoint" />
+            <Array as="points">
+              <mxPoint x="549" y="715" />
+            </Array>
+            <mxPoint as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="BZ69hw3lXa-rXLOsEJiv-4" value="" style="endArrow=classic;html=1;rounded=0;" edge="1" parent="1" source="3">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="478" y="208" as="sourcePoint" />
+            <mxPoint x="425" y="270" as="targetPoint" />
+            <Array as="points" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="hc1" value="Health Checks" style="outlineConnect=0;dashed=0;verticalLabelPosition=bottom;verticalAlign=top;align=center;html=1;shape=mxgraph.aws4.health_check_icon;fillColor=#D45B07;gradientColor=none;" parent="1" vertex="1">
+          <mxGeometry x="400" y="270" width="50" height="50" as="geometry" />
+        </mxCell>
+        <mxCell id="BZ69hw3lXa-rXLOsEJiv-14" value="&lt;div&gt;&lt;br&gt;&lt;/div&gt;Amazon DynamoDB&lt;div&gt;region-status&lt;/div&gt;" style="sketch=0;outlineConnect=0;fontColor=#232F3E;gradientColor=none;strokeColor=#ffffff;fillColor=#232F3E;dashed=0;verticalLabelPosition=middle;verticalAlign=bottom;align=center;html=1;whiteSpace=wrap;fontSize=10;fontStyle=1;spacing=3;shape=mxgraph.aws4.productIcon;prIcon=mxgraph.aws4.dynamodb;" vertex="1" parent="1">
+          <mxGeometry x="383.7" y="780" width="80" height="120" as="geometry" />
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>
